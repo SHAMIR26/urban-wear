@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UrbanWear | Modern Fashion Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <style>
+    /* (your entire CSS remains unchanged) */
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">Urban<span>Wear</span></a>
+
+        <div class="nav-links" id="navLinks">
+          <a href="#home">Home</a>
+          <a href="#products">Shop</a>
+          <a href="#features">Features</a>
+          <a href="#testimonials">Reviews</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="icons">
+          <button class="icon-btn"><i data-feather="search"></i></button>
+          <button class="icon-btn"><i data-feather="shopping-bag"></i></button>
+          <button class="icon-btn menu-btn" id="menuBtn"><i data-feather="menu"></i></button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- (ALL YOUR PAGE CONTENT REMAINS EXACTLY THE SAME) -->
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>UrbanWear</h3>
+          <p>Premium online clothing store delivering modern and stylish fashion worldwide.</p>
+        </div>
+
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="#home">Home</a>
+          <a href="#products">Products</a>
+          <a href="#features">Features</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="footer-col">
+          <h3>Customer Service</h3>
+          <a href="#">Shipping Policy</a>
+          <a href="#">Returns & Refunds</a>
+          <a href="#">Support</a>
+          <a href="#">FAQs</a>
+        </div>
+
+        <div class="footer-col">
+          <h3>Follow Us</h3>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Twitter</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>© 2026 UrbanWear. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <button class="scroll-top" id="scrollTop">
+    <i data-feather="arrow-up"></i>
+  </button>
+
+  <!-- 🔥 Chat Widget Embed Script -->
+  <script src="https://redulix-ai-chat.onrender.com/embed.js"
+          data-client-id="urban-wear-a9a19182"
+          data-embed-token="3c93e7ce27959190c10374b6b0e27881"
+          async defer></script>
+
+  <script>
+    feather.replace();
+
+    // Mobile Menu
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Scroll Top Button
+    const scrollTop = document.getElementById('scrollTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollTop.classList.add('show');
+      } else {
+        scrollTop.classList.remove('show');
+      }
+    });
+
+    scrollTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Add to Cart Animation
+    const cartButtons = document.querySelectorAll('.add-cart');
+
+    cartButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const originalText = button.innerText;
+        button.innerText = 'Added ✓';
+        button.style.background = '#16a34a';
+
+        setTimeout(() => {
+          button.innerText = originalText;
+          button.style.background = '';
+        }, 2000);
+      });
+    });
+
+    // Newsletter Form
+    const form = document.querySelector('.newsletter-form');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you for subscribing to UrbanWear!');
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
