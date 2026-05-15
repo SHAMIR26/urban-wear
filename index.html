@@ -4,44 +4,279 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UrbanWear | Modern Fashion Store</title>
+  
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
   <style>
-    /* (your entire CSS remains unchanged) */
+    :root {
+      --primary: #1a1a1a;
+      --accent: #ff4757;
+      --text-main: #333;
+      --bg-light: #ffffff;
+      --bg-alt: #f8f9fa;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* --- Navigation --- */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: var(--transition);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-decoration: none;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .nav-links a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--accent);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+
+    .icons { display: flex; gap: 15px; }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--primary);
+      transition: var(--transition);
+      padding: 8px;
+      border-radius: 50%;
+    }
+
+    .icon-btn:hover { background: var(--bg-alt); color: var(--accent); }
+
+    /* --- Hero Section --- */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      color: white;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .hero-content { margin: 0 auto; max-width: 800px; }
+    .hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 20px; }
+    
+    .btn-primary {
+      padding: 15px 40px;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: var(--transition);
+      display: inline-block;
+      border: 2px solid var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      transform: translateY(-3px);
+    }
+
+    /* --- Products --- */
+    .section-title { text-align: center; margin-bottom: 50px; font-size: 2.5rem; }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 80px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      transition: var(--transition);
+    }
+
+    .product-card:hover { transform: translateY(-10px); }
+
+    .product-img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+
+    .product-info { padding: 20px; text-align: center; }
+
+    .add-cart {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: var(--primary);
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    /* --- Footer --- */
+    footer { background: #111; color: #fff; padding: 80px 0 30px; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+    .footer-col h3 { margin-bottom: 20px; color: var(--accent); }
+    .footer-col a { display: block; color: #ccc; text-decoration: none; margin-bottom: 10px; }
+
+    /* Scroll Top */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--accent);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      display: none;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
+    }
+
+    .scroll-top.show { display: grid; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2.5rem; }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- Header -->
-  <header>
+  <header id="header">
     <div class="container">
       <nav>
         <a href="#" class="logo">Urban<span>Wear</span></a>
-
-        <div class="nav-links" id="navLinks">
+        <div class="nav-links">
           <a href="#home">Home</a>
           <a href="#products">Shop</a>
-          <a href="#features">Features</a>
-          <a href="#testimonials">Reviews</a>
           <a href="#contact">Contact</a>
         </div>
-
         <div class="icons">
           <button class="icon-btn"><i data-feather="search"></i></button>
+          <button class="icon-btn"><i data-feather="user"></i></button>
           <button class="icon-btn"><i data-feather="shopping-bag"></i></button>
-          <button class="icon-btn menu-btn" id="menuBtn"><i data-feather="menu"></i></button>
         </div>
       </nav>
     </div>
   </header>
 
-  <!-- (ALL YOUR PAGE CONTENT REMAINS EXACTLY THE SAME) -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Define Your Style</h1>
+      <p style="font-size: 1.2rem; margin-bottom: 30px;">Explore the latest trends in urban fashion and streetwear.</p>
+      <a href="#products" class="btn-primary">Shop Collection</a>
+    </div>
+  </section>
 
-  <!-- Footer -->
+  <main class="container">
+    <h2 class="section-title" id="products">Featured Products</h2>
+    <div class="product-grid">
+      <!-- Product 1 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80" alt="Tee" class="product-img">
+        <div class="product-info">
+          <h3>Essential White Tee</h3>
+          <p>$29.00</p>
+          <button class="add-cart">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 2 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80" alt="Jacket" class="product-img">
+        <div class="product-info">
+          <h3>Urban Bomber Jacket</h3>
+          <p>$89.00</p>
+          <button class="add-cart">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 3 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" alt="Shoes" class="product-img">
+        <div class="product-info">
+          <h3>Retro Sneakers</h3>
+          <p>$120.00</p>
+          <button class="add-cart">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
   <footer id="contact">
     <div class="container">
       <div class="footer-grid">
@@ -49,103 +284,66 @@
           <h3>UrbanWear</h3>
           <p>Premium online clothing store delivering modern and stylish fashion worldwide.</p>
         </div>
-
         <div class="footer-col">
           <h3>Quick Links</h3>
-          <a href="#home">Home</a>
-          <a href="#products">Products</a>
-          <a href="#features">Features</a>
-          <a href="#contact">Contact</a>
+          <a href="#">Home</a>
+          <a href="#">Shop</a>
+          <a href="#">Privacy Policy</a>
         </div>
-
-        <div class="footer-col">
-          <h3>Customer Service</h3>
-          <a href="#">Shipping Policy</a>
-          <a href="#">Returns & Refunds</a>
-          <a href="#">Support</a>
-          <a href="#">FAQs</a>
-        </div>
-
         <div class="footer-col">
           <h3>Follow Us</h3>
-          <a href="#">Instagram</a>
-          <a href="#">Facebook</a>
-          <a href="#">Twitter</a>
-          <a href="#">YouTube</a>
+          <div style="display:flex; gap:10px; margin-top:10px;">
+            <i data-feather="instagram"></i>
+            <i data-feather="facebook"></i>
+            <i data-feather="twitter"></i>
+          </div>
         </div>
       </div>
-
-      <div class="copyright">
-        <p>© 2026 UrbanWear. All Rights Reserved.</p>
-      </div>
+      <center style="border-top: 1px solid #333; padding-top: 20px; color: #777;">
+        &copy; 2026 UrbanWear. All Rights Reserved.
+      </center>
     </div>
   </footer>
 
-  <!-- Scroll Top -->
-  <button class="scroll-top" id="scrollTop">
-    <i data-feather="arrow-up"></i>
-  </button>
+  <button class="scroll-top" id="scrollTop"><i data-feather="arrow-up"></i></button>
 
-  <!-- 🔥 Chat Widget Embed Script -->
-  <script src="https://redulix-ai-chat.onrender.com/embed.js"
-          data-client-id="urban-wear-a9a19182"
-          data-embed-token="3c93e7ce27959190c10374b6b0e27881"
-          async defer></script>
+  <!-- Chat Widget -->
+  <script src="https://redulix-ai-chat.onrender.com/embed.js" data-client-id="urban-wear-a9a19182" data-embed-token="3c93e7ce27959190c10374b6b0e27881" async defer></script>
 
   <script>
     feather.replace();
 
-    // Mobile Menu
-    const menuBtn = document.getElementById('menuBtn');
-    const navLinks = document.getElementById('navLinks');
-
-    menuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    // Scroll Top Button
-    const scrollTop = document.getElementById('scrollTop');
-
+    // Scroll Header Effect
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        scrollTop.classList.add('show');
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.style.padding = '10px 0';
+        header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
       } else {
-        scrollTop.classList.remove('show');
+        header.style.padding = '0';
+        header.style.boxShadow = 'none';
       }
     });
 
-    scrollTop.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-
-    // Add to Cart Animation
-    const cartButtons = document.querySelectorAll('.add-cart');
-
-    cartButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const originalText = button.innerText;
-        button.innerText = 'Added ✓';
-        button.style.background = '#16a34a';
-
+    // Add to Cart Logic
+    document.querySelectorAll('.add-cart').forEach(btn => {
+      btn.addEventListener('click', function() {
+        this.innerHTML = 'Added <i data-feather="check"></i>';
+        this.style.background = '#16a34a';
+        feather.replace();
         setTimeout(() => {
-          button.innerText = originalText;
-          button.style.background = '';
+          this.innerHTML = 'Add to Cart';
+          this.style.background = '#1a1a1a';
         }, 2000);
       });
     });
 
-    // Newsletter Form
-    const form = document.querySelector('.newsletter-form');
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Thank you for subscribing to UrbanWear!');
-      form.reset();
+    // Scroll Top
+    const stp = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      stp.classList.toggle('show', window.scrollY > 500);
     });
+    stp.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
   </script>
-
 </body>
 </html>
